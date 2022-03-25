@@ -22,7 +22,7 @@ def do_pack():
 
 def do_deploy(archive_path):
     """distributes an archive to your web servers"""
-    if exists(archive_path) is False:
+    if os.path.exists(archive_path) is False:
         return False
     try:
         file_n = archive_path.split("/")[-1]
