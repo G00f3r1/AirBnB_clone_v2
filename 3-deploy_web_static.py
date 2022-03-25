@@ -2,6 +2,10 @@
 """deploy """
 from datetime import datetime
 from fabric.api import local
+from fabric.api import get
+from fabric.api import put
+from fabric.api import env
+from fabric.api import run
 import os
 env.hosts = ['34.148.139.135', '34.236.36.206']
 
