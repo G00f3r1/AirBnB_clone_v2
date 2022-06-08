@@ -65,3 +65,15 @@ class FileStorage:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects[key]
             self.save()
+
+    def reload(self):
+        """Create all tables in the database and initialize a new session."""
+        Base.metadata.create_all(self.__engine)
+        session_factory = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
+        Session = scoped_session(session_factory)
+        self.__session = Session()
+
+    def close(self):
+        """Close the working SQLAlchemy session."""
+        self.__session.close()
